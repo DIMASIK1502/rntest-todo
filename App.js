@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SafeAreaView, Text, Button} from 'react-native';
+import {SafeAreaView, Text, Button, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -8,14 +8,20 @@ import TodosModal from './modals/Todos';
 
 function HomeScreen() {
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <SafeAreaView
+      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>Home Screen</Text>
     </SafeAreaView>
   );
 }
 const HumbergerButton = ({navigation}) => {
   const handleButtonPress = () => navigation.openDrawer();
-  return <Button title="меню" onPress={handleButtonPress}></Button>;
+
+  return (
+    <View style={{margin: 12}}>
+      <Button title="меню" onPress={handleButtonPress}></Button>
+    </View>
+  );
 };
 
 const Drawer = createDrawerNavigator();
@@ -50,7 +56,7 @@ const DrawerStack = () => {
 
 function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer mode="modal">
       <Stack.Navigator headerMode="none" initialRouteName="DrawerStack">
         <Stack.Screen name="TodosModal" component={TodosModal}></Stack.Screen>
         <Stack.Screen name="DrawerStack" component={DrawerStack}></Stack.Screen>
