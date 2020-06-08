@@ -5,6 +5,8 @@ import styles from './styles';
 import axios from 'axios';
 
 const LIMIT = 25;
+const Threshold = 0.5;
+const NumToRender = 9;
 
 const Separator = () => <View style={styles.itemSeparator}></View>;
 
@@ -20,7 +22,7 @@ export default class TodoList extends Component {
     page: 1,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.getTodoList()
       .then((res) => {
         this.setState({refreshing: false, data: res.data});
@@ -47,8 +49,7 @@ export default class TodoList extends Component {
         this.setState((prevState) => ({
           data: prevState.data.filter((a) => a.id !== id),
         }));
-      })
-      
+      });
 
   handleLoadMore = async () => {
     const {page, loading} = this.state;
@@ -93,9 +94,9 @@ export default class TodoList extends Component {
         onRefresh={this.handleOnRefresh}
         ListFooterComponent={loading ? this.renderFooter : null}
         onEndReached={this.handleLoadMore}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={Threshold}
         contentContainerStyle={styles.todoListContentContainer}
-        initialNumToRender={9}
+        initialNumToRender={NumToRender}
         keyExtractor={keyExtractor}
         data={data}
         ItemSeparatorComponent={Separator}

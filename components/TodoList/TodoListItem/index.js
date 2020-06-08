@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, Animated, ActivityIndicator} from 'react-native';
-import Swipable from 'react-native-gesture-handler/Swipeable';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 
@@ -9,18 +9,18 @@ function renderRightActions(progress, deleteTodo, id, loading, setLoading) {
     inputRange: [0, 1],
     outputRange: [80, 0],
   });
-  const onPress = async () => {
+  const onPress = () => {
     if (!loading) {
       setLoading(true);
       deleteTodo(id).catch((err) => {
         setLoading(false);
-        console.log(err);
       });
     }
   };
   return (
-    <View style={{width: 80, flexDirection: 'row'}}>
-      <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
+    <View style={styles.rightActionContinaer}>
+      <Animated.View
+        style={[styles.buttonWrapper, {transform: [{translateX: trans}]}]}>
         <RectButton style={styles.rightAction} onPress={onPress}>
           {loading ? (
             <ActivityIndicator />
@@ -37,7 +37,7 @@ function TodoListItem({title, id, deleteTodo}) {
   const [loading, setLoading] = useState(false);
 
   return (
-    <Swipable
+    <Swipeable
       renderRightActions={(progress) =>
         renderRightActions(progress, deleteTodo, id, loading, setLoading)
       }>
@@ -45,7 +45,7 @@ function TodoListItem({title, id, deleteTodo}) {
         <Text style={styles.todoItemId}>{id}</Text>
         <Text style={styles.todoItemTitle}>{title}</Text>
       </View>
-    </Swipable>
+    </Swipeable>
   );
 }
 

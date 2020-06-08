@@ -22,6 +22,10 @@ export default StyleSheet.create({
     color: 'red',
     marginRight: 8,
   },
+  buttonWrapper: {
+    flex: 1,
+  },
+  rightActionContinaer: {width: 80, flexDirection: 'row'},
   rightAction: {
     alignItems: 'center',
     flex: 1,
