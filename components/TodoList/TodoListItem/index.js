@@ -12,7 +12,7 @@ function renderRightActions(progress, deleteTodo, id, loading, setLoading) {
   const onPress = () => {
     if (!loading) {
       setLoading(true);
-      deleteTodo(id).catch((err) => {
+      deleteTodo(id).catch(() => {
         setLoading(false);
       });
     }

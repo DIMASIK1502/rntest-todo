@@ -7,7 +7,7 @@ export default function HumbergerButton({navigation}) {
 
   return (
     <View style={styles.buttonWrapper}>
-      <Button title="меню" onPress={handleButtonPress}></Button>
+      <Button title="меню" onPress={handleButtonPress} />
     </View>
   );
 }

@@ -8,7 +8,7 @@ const LIMIT = 25;
 const Threshold = 0.5;
 const NumToRender = 9;
 
-const Separator = () => <View style={styles.itemSeparator}></View>;
+const Separator = () => <View style={styles.itemSeparator} />;
 
 const keyExtractor = (item) => {
   return `${item.id}-item`;
@@ -27,19 +27,15 @@ export default class TodoList extends Component {
       .then((res) => {
         this.setState({refreshing: false, data: res.data});
       })
-      .catch((err) => {
+      .catch(() => {
         this.setState({refreshing: false});
       });
   }
   handleOnRefresh = () => {
     this.setState({refreshing: true, page: 1});
-    this.getTodoList()
-      .then((res) => {
-        this.setState({data: res.data, refreshing: false});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getTodoList().then((res) => {
+      this.setState({data: res.data, refreshing: false});
+    });
   };
 
   deleteTodo = (id) =>

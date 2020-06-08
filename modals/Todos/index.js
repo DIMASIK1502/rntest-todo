@@ -4,13 +4,13 @@ import TodoList from '../../components/TodoList';
 import styles from './styles';
 
 export default function TodosModal({navigation}) {
-  onPress = () => {
+  const onPress = () => {
     navigation.goBack();
   };
   return (
     <SafeAreaView style={styles.modalContainer}>
       <View style={styles.modalHeader}>
-        <Button onPress={onPress} title="Закрыть"></Button>
+        <Button onPress={onPress} title="Закрыть" />
       </View>
       <TodoList />
     </SafeAreaView>
